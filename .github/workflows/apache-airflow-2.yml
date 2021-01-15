@@ -6,6 +6,7 @@ on:
     branches: [develop]
     paths:
       - .github/workflows/apache-airflow-2.yml
+  workflow_dispatch:
 jobs:
   DockerImage:
     name: apache/airflow:master-python3.8
