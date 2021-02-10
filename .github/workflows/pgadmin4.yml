@@ -26,8 +26,8 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: pgadmin4
         run: |
-          docker pull pgadmin4:latest
-          docker tag pgadmin4:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker pull dpage/pgadmin4:latest
+          docker tag dpage/pgadmin4:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
       - name: ECR Logout
         if: always()
