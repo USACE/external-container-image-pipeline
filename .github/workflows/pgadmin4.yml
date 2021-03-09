@@ -1,5 +1,5 @@
   
-name: Update Apache Airflow Containers
+name: Update Pgadmin4 Containers
 
 on:
   push:
