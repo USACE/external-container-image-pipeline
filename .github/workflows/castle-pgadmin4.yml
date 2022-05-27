@@ -5,12 +5,14 @@ on:
     branches: [develop]
     paths:
       - .github/workflows/castle-pgadmin4.yml
+      - pgadmin4/**
   workflow_dispatch:
 jobs:
   DockerImage:
     name: pgadmin4
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -25,11 +27,14 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: pgadmin4
         run: |
-          docker pull dpage/pgadmin4:latest
-          docker tag dpage/pgadmin4:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          docker tag dpage/pgadmin4:latest $ECR_REGISTRY/$ECR_REPOSITORY:stable
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest pgadmin4
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:stable
+        # run: |
+        #   docker pull dpage/pgadmin4:latest
+        #   docker tag dpage/pgadmin4:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
+        #   docker tag dpage/pgadmin4:latest $ECR_REGISTRY/$ECR_REPOSITORY:stable
+        #   docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+        #   docker push $ECR_REGISTRY/$ECR_REPOSITORY:stable
       - name: ECR Logout
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}

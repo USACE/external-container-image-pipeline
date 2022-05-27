@@ -1,0 +1,2 @@
+A slightly customized build to support simply configuring OAUTH2 using in-container environment variables. Configuring OAUTH2 for pgadmin4 (container deployment) can be configured using variables prefixed with PGADMIN*CONFIG*\* "out of the box" as described in https://www.pgadmin.org/docs/pgadmin4/development/container_deployment.html. This is challenging, as the OAUTH2 configuration is a nested
+array of dictionaries, which gets a little dicey to specify as an environment variable.
