@@ -27,7 +27,7 @@ OAUTH2_CONFIG = [
         'OAUTH2_USERINFO_ENDPOINT': os.getenv('OAUTH2_USERINFO_ENDPOINT'),
         # Oauth scope, ex: 'openid email profile'
         # Note that an 'email' claim is required in the resulting profile
-        'OAUTH2_SCOPE': os.getenv('OAUTH2_USERINFO_ENDPOINT'),
+        'OAUTH2_SCOPE': os.getenv('OAUTH2_SCOPE', 'openid email profile'),
         # Font-awesome icon, ex: fa-github
         'OAUTH2_ICON': os.getenv('OAUTH2_ICON'),
         # UI button colour, ex: #0000ff
